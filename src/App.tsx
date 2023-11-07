@@ -1,7 +1,40 @@
 import { createSignal } from "solid-js";
-import logo from "./assets/logo.svg";
 import { invoke } from "@tauri-apps/api/tauri";
-import "./App.css";
+import { styled, css } from "solid-styled-components";
+
+const Container = styled("div")`
+  margin: 0;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+`;
+
+const Logo = styled("img")`
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: 0.75s;
+`;
+
+const vite = css`
+  &:hover {
+    filter: drop-shadow(0 0 2em #747bff);
+  }
+`;
+
+const tauri = css`
+  &:hover {
+    filter: drop-shadow(0 0 2em #24c8db);
+  }
+`;
+
+const solid = css`
+  &:hover {
+    filter: drop-shadow(0 0 2em #2f5d90);
+  }
+`;
 
 function App() {
   const [greetMsg, setGreetMsg] = createSignal("");
@@ -13,18 +46,18 @@ function App() {
   }
 
   return (
-    <div class="container">
+    <Container>
       <h1>Welcome to Tauri!</h1>
 
       <div class="row">
         <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" class="logo vite" alt="Vite logo" />
+          <Logo src="/vite.svg" class={vite} alt="Vite logo" />
         </a>
         <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" class="logo tauri" alt="Tauri logo" />
+          <Logo src="/tauri.svg" class={tauri} alt="Tauri logo" />
         </a>
         <a href="https://solidjs.com" target="_blank">
-          <img src={logo} class="logo solid" alt="Solid logo" />
+          <Logo src="/solid.svg" class={solid} alt="Solid logo" />
         </a>
       </div>
 
@@ -46,7 +79,7 @@ function App() {
       </form>
 
       <p>{greetMsg()}</p>
-    </div>
+    </Container>
   );
 }
 
